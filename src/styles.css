@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-image:radial-gradient(rgb(248, 248, 248rgb(250, 250, 250)34)); color: rgb(121, 11, 165);}
+
+.form-container{
+    display: block;
+    max-width: 400px;
+    margin: auto;
+
+    background: #252525;
+    padding: 48px;
+    border-radius: 16px;
+}
+.mat-form-field{
+    width: 100%;
+    color: white;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+.margin-top{
+    margin-top: 16px;
+}
+.center-text{
+    text-align: center;
+}
+.login-button.mat-primary{
+        background: #141414; 
+        color:#fff;
+}
