@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'FHUnifiedPortal'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DD7C74D1A2314872A3CA2C22A24E11FA }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C08FEBB0404649029F86B63CBE44C3F4 }}
           package: .
