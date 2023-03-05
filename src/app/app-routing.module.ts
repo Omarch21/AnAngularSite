@@ -19,6 +19,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: LandingComponent,
+    ...canActivate(redirectLoggedInToHome),
   },
   {
     path: 'login',
