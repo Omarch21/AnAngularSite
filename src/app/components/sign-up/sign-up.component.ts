@@ -80,7 +80,7 @@ export class SignUpComponent implements OnInit {
       .signUp(email, password)
       .pipe(
         switchMap(({ user: { uid } }) =>
-          this.usersService.addUser({ uid, email, displayName: name })
+          this.usersService.addUser({ uid, email, displayName: name, totalBudget: 0 })
         ),
         this.toast.observe({
           success: 'Congrats! You are all signed up',

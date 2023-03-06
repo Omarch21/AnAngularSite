@@ -23,7 +23,9 @@
     "@ngneat/hot-toast": "^4.1.0",
     "@ngneat/overview": "^3.0.0",
     "@ngneat/until-destroy": "^9.2.1",
-    "firebase": "^9.9.3",
+    "apexcharts": "^3.37.1",
+    "firebase": "^9.17.2",
+    "ng-apexcharts": "^1.7.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

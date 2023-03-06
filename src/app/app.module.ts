@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { BudgetComponent } from './components/budget/budget.component';
 import { HomeComponent } from './components/home/home.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,15 +23,17 @@ import { LandingComponent } from './components/landing/landing.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './components/profile/profile.component';
 import { getStorage, provideStorage } from '@angular/fire/storage';
-
+import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   declarations: [
+
     AppComponent,
     LoginComponent,
     SignUpComponent,
     LandingComponent,
     HomeComponent,
     ProfileComponent,
+    BudgetComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
     provideStorage(() => getStorage()),
     HotToastModule.forRoot(),
     MatMenuModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

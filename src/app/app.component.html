@@ -6,7 +6,7 @@
         width="30"
         height="30"
         class="profile-image-toolbar"
-        [src]="user.photoURL ?? 'assets/images/image-placeholder.png'"
+        [src]="user.photoURL ?? 'assets/images/image.png'"
       />
       {{ user.displayName }}
       <mat-icon>expand_more</mat-icon>
@@ -33,6 +33,10 @@
   <button mat-menu-item routerLink="/profile">
     <mat-icon>account_circle</mat-icon>
     Profile
+  </button>
+  <button mat-menu-item routerLink="/budget">
+    <mat-icon>monetization_on</mat-icon>
+    Budget
   </button>
   <button mat-menu-item (click)="logout()">
     <mat-icon>logout</mat-icon>

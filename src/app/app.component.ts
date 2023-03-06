@@ -11,6 +11,8 @@ import { UsersService } from './services/users.service';
 export class AppComponent {
   user$ = this.usersService.currentUserProfile$;
 
+ 
+  
   constructor(
     private authService: AuthService,
     public usersService: UsersService,

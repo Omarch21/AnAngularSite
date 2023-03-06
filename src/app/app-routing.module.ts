@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { BudgetComponent } from './components/budget/budget.component';
 import {
   canActivate,
   redirectLoggedInTo,
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
+  {
+    path: 'budget',
+    component: BudgetComponent,
     ...canActivate(redirectUnauthorizedToLogin),
   },
   {
