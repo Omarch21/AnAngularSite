@@ -5,6 +5,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BudgetComponent } from './components/budget/budget.component';
+import { ExpendituresComponent } from './components/expenditures/expenditures.component';
 import {
   canActivate,
   redirectLoggedInTo,
@@ -43,10 +44,16 @@ const routes: Routes = [
     ...canActivate(redirectUnauthorizedToLogin),
   },
   {
+    path: 'expenditures',
+    component: ExpendituresComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
     ...canActivate(redirectUnauthorizedToLogin),
   },
+
 ];
 
 @NgModule({

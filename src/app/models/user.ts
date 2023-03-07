@@ -8,4 +8,5 @@ export interface ProfileUser {
   address?: string;
   photoURL?: string;
   totalBudget?: number;
+  expenditure?: any[];
 }

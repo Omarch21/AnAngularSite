@@ -8,3 +8,7 @@
 .textchart{
     text-align: center;
 }
+.addButton{
+   background-color: rgb(132, 9, 163);
+   color: white;
+}

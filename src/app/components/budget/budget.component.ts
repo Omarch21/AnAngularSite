@@ -13,7 +13,6 @@ import { Observable,tap,map } from 'rxjs';
 export class BudgetComponent implements OnInit {
   user$ = this.usersService.currentUserProfile$;
   myVariable: any;
-
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
@@ -21,7 +20,6 @@ export class BudgetComponent implements OnInit {
       .pipe(
         tap((totalBudget) => {
           this.myVariable = totalBudget?.totalBudget;
-          
         }),
         map((totalBudget) => {
           return [50, 20, this.myVariable] ;
@@ -29,7 +27,7 @@ export class BudgetComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe((chartSeries) => {
-        this.chartSeries = chartSeries;
+        this.chartSeries = chartSeries;        
       });
   }
 

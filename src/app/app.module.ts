@@ -21,9 +21,12 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { LandingComponent } from './components/landing/landing.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import { ProfileComponent } from './components/profile/profile.component';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { ExpendituresComponent } from './components/expenditures/expenditures.component';
+
 @NgModule({
   declarations: [
 
@@ -33,7 +36,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     LandingComponent,
     HomeComponent,
     ProfileComponent,
-    BudgetComponent
+    BudgetComponent,
+    ExpendituresComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     provideStorage(() => getStorage()),
     HotToastModule.forRoot(),
     MatMenuModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

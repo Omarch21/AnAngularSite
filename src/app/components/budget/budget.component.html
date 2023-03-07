@@ -3,6 +3,8 @@
     <h1 style="text-align: center;">Welcome to the Budget page, {{user.displayName}}!, you have a budget of {{user.totalBudget}}</h1>
     <div class = "pie-chart">
         <apx-chart [series] = "chartSeries" [chart] = "chartDetails"></apx-chart>
+
+            <button class="addButton"type="submit" mat-raised-button routerLink="/expenditures">Add Expenditure</button>
         </div>
 </ng-container>
 

@@ -1,0 +1,55 @@
+<div
+  class="form-container mat-elevation-z5 text-center"
+  *ngIf="user$ | async as user"
+>
+  <h1>Expenditure</h1>
+
+ 
+
+  <form class="margin-top" [formGroup]="expenditureForm"(ngSubmit)="saveProfile()">
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label> Expenditure type</mat-label>
+        <mat-select formControlName = "expenditureType" required>
+          <mat-option> -</mat-option>
+          <mat-option *ngFor="let expenditure of expenditures" [value]="expenditure"> {{expenditure.type}}</mat-option>
+        </mat-select>
+          <mat-error *ngIf="expenditureForm.controls['expenditureType'].hasError('required')"> Please choose expenditure type</mat-error>
+     
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="number"
+          matInput
+          formControlName="expenditureAmount"
+          placeholder="Amount"
+          required
+        />
+        <mat-error *ngIf="expenditureForm.controls['expenditureAmount'].hasError('required')"> Please enter an amount</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="date"
+          matInput
+          formControlName="expenditureDate"
+          placeholder="Date"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="expenditureNotes"
+          placeholder="Notes"
+        />
+      </mat-form-field>
+    </div>
+
+
+    
+
+    <button type="submit" class="margin-top" mat-raised-button color="primary">
+      Add
+    </button>
+  </form>
+</div>
