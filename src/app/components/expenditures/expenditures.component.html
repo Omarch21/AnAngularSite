@@ -6,7 +6,7 @@
 
  
 
-  <form class="margin-top" [formGroup]="expenditureForm"(ngSubmit)="saveProfile()">
+  <form class="margin-top" [formGroup]="expenditureForm"(ngSubmit)="saveExpenditure()">
     <div class="row">
       <mat-form-field appearance="fill">
         <mat-label> Expenditure type</mat-label>
@@ -26,6 +26,7 @@
           required
         />
         <mat-error *ngIf="expenditureForm.controls['expenditureAmount'].hasError('required')"> Please enter an amount</mat-error>
+        <mat-error *ngIf="expenditureForm.get('expenditureAmount')?.hasError('negativeAmount')"> Please enter in postive amount</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input

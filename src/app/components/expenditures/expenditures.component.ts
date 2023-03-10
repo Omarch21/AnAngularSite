@@ -1,17 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup,UntypedFormGroup,Validators } from '@angular/forms';
+import { FormControl, FormGroup,UntypedFormGroup,Validators,AbstractControl,ValidationErrors,ValidatorFn } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { switchMap, tap } from 'rxjs';
 import { ProfileUser } from 'src/app/models/user';
 import { Expenditure } from 'src/app/models/expenditure.model';
+import { Router } from '@angular/router';
 
 import { UsersService } from 'src/app/services/users.service';
 interface ExpenditureType{
   type: string;
 
 }
+export function negativeExpenditure(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const amount = control.value;
+    console.log('Amount:', amount);
 
+    if (amount && amount < 0) {
+      return { negativeAmount: true };
+    } else {
+      return null;
+    }
+  };
+}
 @UntilDestroy()
 
 @Component({
@@ -25,15 +37,16 @@ export class ExpendituresComponent implements OnInit {
   expenditureForm = new UntypedFormGroup({
     uid: new FormControl(null),
     expenditureType:new FormControl<ExpenditureType | null>(null, Validators.required),
-    expenditureAmount: new FormControl(0),
+    expenditureAmount: new FormControl(null,[Validators.required, negativeExpenditure()]),
     expenditureDate: new FormControl(''),
     expenditureNotes: new FormControl('')
-  });
+});
 
   constructor(
 
     private toast: HotToastService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -50,11 +63,16 @@ expenditures: ExpenditureType[] = [
   {type: 'Groceries'},
   {type: 'Personal Use'},
   {type: 'Gasoline'},
-  {type: 'Rent'}
+  {type: 'Rent'},
+  {type: 'Other'}
 
 ]
 
-  saveProfile() {
+  saveExpenditure() {
+    if (!this.expenditureForm.valid) {
+      return;
+    }
+
     const expenditure: Expenditure = {
       type: this.expenditureForm.get('expenditureType')?.value?.type ?? 'Bill',
       amount: this.expenditureForm.get('expenditureAmount')?.value ?? 0,
@@ -66,11 +84,12 @@ expenditures: ExpenditureType[] = [
    this.usersService
     .addExpenditures(userId, [expenditure])
     .then(()=>{
-      this.toast.success('Image uploaded successfully');
+      this.toast.success('Expenditure added to account');
+      this.router.navigate(['/budget']);
     }
     ).catch((error) => {
       console.error(error);
-      this.toast.error("There was an error in updating the profile");
+      this.toast.error("There was an error adding expenditure");
     })
    
 
