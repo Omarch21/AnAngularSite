@@ -6,7 +6,7 @@ import {
   Firestore,
   getDoc,
   setDoc,
-  updateDoc,addDoc
+  updateDoc,addDoc, collectionData
 } from '@angular/fire/firestore';
 
 import { filter, from, map, Observable, of, switchMap } from 'rxjs';
@@ -40,20 +40,18 @@ export class UsersService {
     const addOperations = expenditures.map(expenditure => addDoc(expendituresCollection, expenditure));
     return Promise.all(addOperations).then(() => {});
   }
- // getExpenditures(userId: string): Observable<Expenditure[]> {
-  //  const userDoc = this.userCollection.doc(userId);
-  //  const expendituresCollection = userDoc.collection('expenditures');
-  //  return expendituresCollection.valueChanges({ idField: 'id' })
-  //    .pipe(
-   //     map((expenditures: Expenditure[]) => {
-  //        return expenditures.map((expenditure: Expenditure) => {
-   //         return {
-   //           ...expenditure,
-   //           date: expenditure.date ? expenditure.date : null
-    //        };
-   //       });
-   //     })
-   //   );}
+  getExpenditures(): Observable<Expenditure[] | null> {
+    return this.authService.currentUser$.pipe(
+      switchMap((user) => {
+        if (!user?.uid) {
+          return of(null);
+        }
+
+        const ref = collection(this.firestore, 'users', user?.uid, 'expenditures');
+        return collectionData(ref) as Observable<Expenditure[] | null>;
+      })
+    );
+  }
   addUser(user: ProfileUser): Observable<void> {
     const ref = doc(this.firestore, 'users', user.uid);
     return from(setDoc(ref, user));

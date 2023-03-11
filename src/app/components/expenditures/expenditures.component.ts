@@ -3,7 +3,6 @@ import { FormControl, FormGroup,UntypedFormGroup,Validators,AbstractControl,Vali
 import { HotToastService } from '@ngneat/hot-toast';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { switchMap, tap } from 'rxjs';
-import { ProfileUser } from 'src/app/models/user';
 import { Expenditure } from 'src/app/models/expenditure.model';
 import { Router } from '@angular/router';
 
@@ -27,7 +26,7 @@ export function negativeExpenditure(): ValidatorFn {
 @UntilDestroy()
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-expenditures',
   templateUrl: './expenditures.component.html',
   styleUrls: ['./expenditures.component.css'],
 })
