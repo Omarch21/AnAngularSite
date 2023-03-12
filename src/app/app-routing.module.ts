@@ -44,7 +44,7 @@ const routes: Routes = [
     ...canActivate(redirectUnauthorizedToLogin),
   },
   {
-    path: 'expenditures',
+    path: 'budget/expenditures',
     component: ExpendituresComponent,
     ...canActivate(redirectUnauthorizedToLogin),
   },

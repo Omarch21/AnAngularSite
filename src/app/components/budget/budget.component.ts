@@ -94,15 +94,18 @@ public chartPlot: ApexPlotOptions = {
           show: true,
           showAlways: true,
           fontSize: "24px",
-          color: "purple"
+          color: "purple",
+          label: "Total Expenditures",
+          formatter: function (w) {
+            const sum = w.globals.seriesTotals.reduce((a: number, b: number) => {
+              return a + b;
+            }, 0);
+            return `$${sum}`;
+          }
         },
         value:{
           show: true,
           color: "purple",
-          formatter: function (val) {
-            return  `$${val}`;
-            
-          }
         }
       }
     }
