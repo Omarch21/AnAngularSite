@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 interface ExpenditureType{
   type: string;
-
+  
 }
 export function negativeExpenditure(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -73,10 +73,11 @@ expenditures: ExpenditureType[] = [
     }
 
     const expenditure: Expenditure = {
-      type: this.expenditureForm.get('expenditureType')?.value?.type ?? 'Bill',
-      amount: this.expenditureForm.get('expenditureAmount')?.value ?? 0,
-      date: this.expenditureForm.get('expenditureDate')?.value ? new Date(this.expenditureForm.get('expenditureDate')?.value) : new Date(),
-      notes: this.expenditureForm.get('expenditureNotes')?.value ?? ''
+      Type: this.expenditureForm.get('expenditureType')?.value?.type ?? 'Bill',
+      Amount: this.expenditureForm.get('expenditureAmount')?.value ?? 0,
+      Date: this.expenditureForm.get('expenditureDate')?.value.toLocaleString() ? new Date(this.expenditureForm.get('expenditureDate')?.value).toLocaleString() : new Date().toLocaleString(),
+      Notes: this.expenditureForm.get('expenditureNotes')?.value ?? '',
+     dateinserted: new Date()
     };
   
     const userId = this.expenditureForm.get('uid')?.value;

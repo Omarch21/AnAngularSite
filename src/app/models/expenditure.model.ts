@@ -1,6 +1,7 @@
 export interface Expenditure {
-    type: string;
-    amount: number;
-    date?: Date;
-    notes?: string;
+    Type: string;
+    Amount: number;
+    Date?: string;
+    Notes?: string;
+    dateinserted: Date;
   }

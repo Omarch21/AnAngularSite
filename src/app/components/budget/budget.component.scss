@@ -1,0 +1,48 @@
+@use "../../../../node_modules/igniteui-theming" as *;
+
+
+$my_dark_palette: palette(
+  $primary: #dab785,
+  $secondary: #d5896f,
+  $surface: #7d029c,
+  $gray: #770471,
+);
+
+
+
+
+
+.expenditureGrid {
+  @include palette($my_dark_palette);
+    width: 60%;
+    margin-right: auto;
+    margin-left:auto;
+    height: 500px;
+}
+.pie-chart{
+    height: 600px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top:  100px;
+    
+}
+.textchart{
+    text-align: center;
+}
+.addButton{
+   background-color: rgb(132, 9, 163);
+   color: white;
+   position: sticky;
+   display:block;
+
+   left: 846px;
+}
+.editButton {
+  background-color: red;
+}
+
+
+
+
+

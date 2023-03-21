@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
+import { ApexGrid, ColumnConfiguration } from 'apex-grid';
+
+ApexGrid.register();
 
 @Component({
   selector: 'app-root',

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -26,6 +26,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ExpendituresComponent } from './components/expenditures/expenditures.component';
+import { HelpPageComponent } from './components/help-page/help-page.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+
 
 @NgModule({
   declarations: [
@@ -37,7 +41,9 @@ import { ExpendituresComponent } from './components/expenditures/expenditures.co
     HomeComponent,
     ProfileComponent,
     BudgetComponent,
-    ExpendituresComponent
+    ExpendituresComponent,
+    HelpPageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -56,9 +62,12 @@ import { ExpendituresComponent } from './components/expenditures/expenditures.co
     HotToastModule.forRoot(),
     MatMenuModule,
     NgApexchartsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSidenavModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

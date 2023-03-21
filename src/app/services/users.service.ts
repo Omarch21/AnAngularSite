@@ -40,6 +40,10 @@ export class UsersService {
     const addOperations = expenditures.map(expenditure => addDoc(expendituresCollection, expenditure));
     return Promise.all(addOperations).then(() => {});
   }
+  editExpenditure(userId: string, expenditureId: string, updatedExpenditure: Partial<Expenditure>): Observable<void> {
+    const expenditureDoc = doc(this.firestore, 'users', userId, 'expenditures', expenditureId);
+    return from(updateDoc(expenditureDoc, updatedExpenditure));
+  }
   getExpenditures(): Observable<Expenditure[] | null> {
     return this.authService.currentUser$.pipe(
       switchMap((user) => {

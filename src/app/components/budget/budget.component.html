@@ -1,3 +1,4 @@
+
 <ng-container *ngIf="user$ | async as user">
  
     <h1 style="text-align: center;">Welcome to the Budget page, {{user.displayName}}!, you have a budget of {{user.totalBudget}}</h1>
@@ -8,12 +9,15 @@
             
         </div>
         <button class="addButton"type="submit" mat-raised-button routerLink="/budget/expenditures">Add Expenditure</button>
-        <div class = "pie-chart">
-        <apx-chart *ngIf="(expen$ | async) as expenditures; else loading"  [plotOptions] = "chartPlot"[dataLabels] = "chartOptions" [series] = "chartSeries" [chart] = "chartDetails" [labels] = "chartLabels"></apx-chart>
-        <ng-template #loading>Loading...</ng-template>          
-        </div>
+        <br>
+        
 </ng-container>
-
-
+<ng-container *ngIf="user$ | async as user">
+<div>
+    <apex-grid [columns]="column" [data]="expenditures" class="expenditureGrid">
+        
+    </apex-grid>  
+</div>
+</ng-container>
 
 

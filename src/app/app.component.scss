@@ -6,6 +6,7 @@ mat-toolbar {
 
 .content {
   padding: 32px;
+
 }
 
 .profile-image-toolbar {
@@ -14,4 +15,21 @@ mat-toolbar {
 }
 .unifiedtext{
   text-align: center;
+}
+.sideMenu{
+  width: 200px;
+  background-color: #7f1ba6ff;
+  //padding:20px;
+  display: flex;
+}
+
+.usercontainer{
+  height: 100%;
+  //width: 200px;
+}
+.navButton{
+
+  width: 100%;
+  background-color: rgb(60,63,77);
+  padding: 10px;
 }

@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
+
 import {ApexChart, ApexNonAxisChartSeries,ApexDataLabels, ApexTitleSubtitle,ApexOptions,ApexAnnotations,ApexPlotOptions } from 'ng-apexcharts';	
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable,tap,map,switchMap } from 'rxjs';
 import { Firestore } from '@angular/fire/firestore';
 import { Expenditure } from 'src/app/models/expenditure.model';
+import { ApexGrid,ColumnConfiguration } from 'apex-grid';
+import { html } from "lit";
+import { MatDialog,MatDialogRef } from '@angular/material/dialog';
+
+ApexGrid.register();
 interface GroupedExpenditures {
   [key: string]: number;
 }
@@ -14,17 +20,26 @@ interface GroupedExpenditures {
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',
-  styleUrls: ['./budget.component.css'],
+  styleUrls: ['./budget.component.scss'],
 })
 
 export class BudgetComponent implements OnInit {
+
+ column: ColumnConfiguration<Expenditure>[] = [
+   { key: 'Type', type: 'string', sort: {comparer: (a, b) => a.length - b.length },filter: true,width: '20%'},
+   { key: 'Amount', type: 'number', sort: true,filter: true,width: '20%'},
+   { key: 'Date', type: 'string', sort: true,filter: true,width: '20%'},
+   { key: 'Notes', type: 'string',  sort: true,filter: true,width: '20%'},
+   { key: 'dateinserted', headerText: "edit", cellTemplate: ({ row }) => html`<button>Edit</button>`   ,width: '20%'},
+ ];
   user$ = this.usersService.currentUserProfile$;
   expen$ = this.usersService.getExpenditures();
   expenditures: Expenditure[] = [];
   values: number[] = [];
   textlabels: string[] = [];
+  gridExpenditure: Expenditure[] = [];
   
-  constructor(private usersService: UsersService, private firestore: Firestore, private auth: AuthService,) {
+  constructor(private usersService: UsersService, private firestore: Firestore, private auth: AuthService) {
 
   }
 
@@ -36,12 +51,12 @@ export class BudgetComponent implements OnInit {
             tap((expenditures) => {
               if (expenditures) {
                 this.expenditures = expenditures;
-                console.log(expenditures.map((expenditure) => expenditure.amount));
+                console.log(expenditures.map((expenditure) => expenditure.Amount));
                 const groupedExpenditures = expenditures.reduce((accumulator: GroupedExpenditures, currentValue) => {
-                  if (accumulator[currentValue.type]) {
-                    accumulator[currentValue.type] += currentValue.amount;
+                  if (accumulator[currentValue.Type]) {
+                    accumulator[currentValue.Type] += currentValue.Amount;
                   } else {
-                    accumulator[currentValue.type] = currentValue.amount;
+                    accumulator[currentValue.Type] = currentValue.Amount;
                   }
                   return accumulator;
                 }, {});
@@ -113,6 +128,15 @@ public chartPlot: ApexPlotOptions = {
 
 };
 
+//editExpenditure(expenditure: Expenditure) {
+  //const dialogRef = this.dialog.open(EditExpenditureComponent, {
+ //   width: '500px',
+   // data: expenditure
+ // });
+
+ 
+//}
+//products: Expenditure[] = [];
 
   
   chartLabels: string[] = [];

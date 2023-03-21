@@ -1,7 +1,8 @@
+<mat-drawer-container class="usercontainer" autoSize>
 <mat-toolbar>
   <div class="unifiedtext"></div>Unified Portal
   <ng-container *ngIf="user$ | async as user; else loginButton">
-    <button mat-button [matMenuTriggerFor]="userMenu">
+    <button mat-button (click)="userMenu.toggle()">
       <img
         width="30"
         height="30"
@@ -9,7 +10,7 @@
         [src]="user.photoURL ?? 'assets/images/image.png'"
       />
       {{ user.displayName }}
-      <mat-icon>expand_more</mat-icon>
+      <mat-icon>menu</mat-icon>
     </button>
   </ng-container>
   <ng-template #loginButton>
@@ -24,22 +25,23 @@
   <router-outlet></router-outlet>
 </div>
 
-<mat-menu #userMenu="matMenu">
+<mat-drawer #userMenu mode="side" class="sideMenu" position="end">
  
-  <button mat-menu-item routerLink="/home">
+  <button mat-raised-button routerLink="/home" class="navButton">
     <mat-icon>home </mat-icon>
     Home
   </button>
-  <button mat-menu-item routerLink="/profile">
+  <button mat-raised-button routerLink="/profile" class="navButton">
     <mat-icon>account_circle</mat-icon>
     Profile
   </button>
-  <button mat-menu-item routerLink="/budget">
+  <button mat-raised-button routerLink="/budget" class="navButton">
     <mat-icon>monetization_on</mat-icon>
     Budget
   </button>
-  <button mat-menu-item (click)="logout()">
+  <button mat-raised-button (click)="logout()" class="navButton">
     <mat-icon>logout</mat-icon>
     Logout
   </button>
-</mat-menu>
+</mat-drawer>
+</mat-drawer-container>
