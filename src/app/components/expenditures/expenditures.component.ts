@@ -7,6 +7,7 @@ import { Expenditure } from 'src/app/models/expenditure.model';
 import { Router } from '@angular/router';
 
 import { UsersService } from 'src/app/services/users.service';
+import { uuidv4 } from '@firebase/util';
 interface ExpenditureType{
   type: string;
   
@@ -73,6 +74,7 @@ expenditures: ExpenditureType[] = [
     }
 
     const expenditure: Expenditure = {
+      id: uuidv4(),
       Type: this.expenditureForm.get('expenditureType')?.value?.type ?? 'Bill',
       Amount: this.expenditureForm.get('expenditureAmount')?.value ?? 0,
       Date: this.expenditureForm.get('expenditureDate')?.value.toLocaleString() ? new Date(this.expenditureForm.get('expenditureDate')?.value).toLocaleString() : new Date().toLocaleString(),

@@ -28,7 +28,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ExpendituresComponent } from './components/expenditures/expenditures.component';
 import { HelpPageComponent } from './components/help-page/help-page.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { EditExpenditureComponent } from './components/edit-expenditure/edit-expenditure.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     BudgetComponent,
     ExpendituresComponent,
     HelpPageComponent,
+    EditExpenditureComponent,
 
   ],
   imports: [
@@ -66,7 +68,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSidenavModule,
     
   ],
-  providers: [],
+  providers: [ DatePipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

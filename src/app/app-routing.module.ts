@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { EditExpenditureComponent } from './components/edit-expenditure/edit-expenditure.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BudgetComponent } from './components/budget/budget.component';
@@ -57,6 +58,11 @@ const routes: Routes = [
   {
     path: 'help',
     component: HelpPageComponent
+  },
+  {
+    path: 'budget/expenditures/info/:id',
+    component: EditExpenditureComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
   },
 ];
 

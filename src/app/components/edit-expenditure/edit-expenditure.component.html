@@ -1,0 +1,63 @@
+<p>Editing Expenditure</p>
+<div
+  class="form-container mat-elevation-z5 text-center"
+  *ngIf="user$ | async as user"
+>
+  <h1>Expenditure</h1>
+
+ 
+
+  <form class="margin-top" [formGroup]="expenditureForm"(ngSubmit)="saveExpenditure()">
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label> Expenditure type</mat-label>
+        <mat-select formControlName = "Type" required>
+   
+          <mat-option *ngFor="let expenditure of expenditures" [value]="expenditure"> {{expenditure.type}}</mat-option>
+        </mat-select>
+          <mat-error *ngIf="expenditureForm.controls['Type'].hasError('required')"> Please choose expenditure type</mat-error>
+     
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="number"
+          matInput
+          formControlName="Amount"
+          placeholder="Amount"
+          required
+        />
+        <mat-error *ngIf="expenditureForm.controls['Amount'].hasError('required')"> Please enter an amount</mat-error>
+        <mat-error *ngIf="expenditureForm.get('Amount')?.hasError('negativeAmount')"> Please enter in postive amount</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="date"
+          matInput
+          formControlName="Date"
+          placeholder="Date"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="Notes"
+          placeholder="Notes"
+
+        />
+      </mat-form-field>
+    </div>
+
+
+    
+
+    <button type="submit" class="margin-top" mat-raised-button color="primary">
+      Update
+    </button>
+  </form>
+</div>
+
+<div class ="">
+  <button mat-raised-button (click)="deleteExpenditure()" class="deleteButton">
+  Delete</button>
+</div>

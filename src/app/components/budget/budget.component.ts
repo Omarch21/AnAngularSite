@@ -10,7 +10,9 @@ import { Expenditure } from 'src/app/models/expenditure.model';
 import { ApexGrid,ColumnConfiguration } from 'apex-grid';
 import { html } from "lit";
 import { MatDialog,MatDialogRef } from '@angular/material/dialog';
-
+import { Router } from '@angular/router';
+import { EditExpenditureComponent } from '../edit-expenditure/edit-expenditure.component';
+import { Routes } from '@angular/router';
 ApexGrid.register();
 interface GroupedExpenditures {
   [key: string]: number;
@@ -30,7 +32,7 @@ export class BudgetComponent implements OnInit {
    { key: 'Amount', type: 'number', sort: true,filter: true,width: '20%'},
    { key: 'Date', type: 'string', sort: true,filter: true,width: '20%'},
    { key: 'Notes', type: 'string',  sort: true,filter: true,width: '20%'},
-   { key: 'dateinserted', headerText: "edit", cellTemplate: ({ row }) => html`<button>Edit</button>`   ,width: '20%'},
+    { key: 'id', headerText: "edit", cellTemplate: ({ value,row }) => html`<button onClick="window.location.href='budget/expenditures/info/${value}'">Edit</button>`   ,width: '20%'},
  ];
   user$ = this.usersService.currentUserProfile$;
   expen$ = this.usersService.getExpenditures();
@@ -39,7 +41,7 @@ export class BudgetComponent implements OnInit {
   textlabels: string[] = [];
   gridExpenditure: Expenditure[] = [];
   
-  constructor(private usersService: UsersService, private firestore: Firestore, private auth: AuthService) {
+  constructor(private usersService: UsersService, private firestore: Firestore, private auth: AuthService, private router: Router) {
 
   }
 
@@ -138,6 +140,9 @@ public chartPlot: ApexPlotOptions = {
 //}
 //products: Expenditure[] = [];
 
+editExpenditure(id: string) {
+  this.router.navigate(['/expenditures/info', id]);
+}
   
   chartLabels: string[] = [];
   getExpenditure(): Observable<Expenditure[] | null>{
