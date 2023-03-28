@@ -1,14 +1,15 @@
-<p>Editing Expenditure</p>
+<p></p>
 <div
   class="form-container mat-elevation-z5 text-center"
   *ngIf="user$ | async as user"
 >
-  <h1>Expenditure</h1>
+  <h1>Edit Expenditure</h1>
 
  
 
   <form class="margin-top" [formGroup]="expenditureForm"(ngSubmit)="saveExpenditure()">
     <div class="row">
+      
       <mat-form-field appearance="fill">
         <mat-label> Expenditure type</mat-label>
         <mat-select formControlName = "Type" required>
@@ -55,9 +56,11 @@
       Update
     </button>
   </form>
+  <br>
+  <button mat-raised-button  class="tbutton" (click)="deleteExpenditure()">
+    Delete</button>
 </div>
+<br>
 
-<div class ="">
-  <button mat-raised-button (click)="deleteExpenditure()" class="deleteButton">
-  Delete</button>
-</div>
+
+

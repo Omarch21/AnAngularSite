@@ -1,8 +1,23 @@
-<mat-drawer-container class="usercontainer" autoSize>
-<mat-toolbar>
-  <div class="unifiedtext"></div>Unified Portal
+
+<mat-toolbar >
+  <div class="unifiedtext"></div>
   <ng-container *ngIf="user$ | async as user; else loginButton">
-    <button mat-button (click)="userMenu.toggle()">
+    <button mat-button routerLink="/home" class="navButton">
+    
+    <mat-icon>home </mat-icon>
+    Home
+  </button>
+  
+  <button mat-button routerLink="/budget" class="navButton">
+    <mat-icon>monetization_on</mat-icon>
+    Budget
+  </button>
+   <div class="textwords">
+    Unified <img src="../assets/images/fh.png"class="logo"> Portal
+
+    </div>
+    
+    <button mat-button [matMenuTriggerFor]="userMenu" class="profile">
       <img
         width="30"
         height="30"
@@ -14,7 +29,12 @@
     </button>
   </ng-container>
   <ng-template #loginButton>
-    <button mat-button routerLink="login">
+    <button mat-button routerLink="/" class="navButton">
+      <mat-icon>home</mat-icon>
+      Home
+    </button>
+      
+    <button mat-button routerLink="login" class="login">
       <mat-icon>login</mat-icon>
       Login
     </button>
@@ -25,23 +45,18 @@
   <router-outlet></router-outlet>
 </div>
 
-<mat-drawer #userMenu mode="side" class="sideMenu" position="end">
- 
-  <button mat-raised-button routerLink="/home" class="navButton">
-    <mat-icon>home </mat-icon>
-    Home
-  </button>
-  <button mat-raised-button routerLink="/profile" class="navButton">
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item routerLink="/profile">
     <mat-icon>account_circle</mat-icon>
     Profile
   </button>
-  <button mat-raised-button routerLink="/budget" class="navButton">
-    <mat-icon>monetization_on</mat-icon>
-    Budget
-  </button>
-  <button mat-raised-button (click)="logout()" class="navButton">
-    <mat-icon>logout</mat-icon>
-    Logout
-  </button>
-</mat-drawer>
-</mat-drawer-container>
+<button mat-menu-item (click)="logout()">
+  <mat-icon>logout</mat-icon>
+  Logout
+</button>
+</mat-menu>
+  
+ 
+ 
+
+

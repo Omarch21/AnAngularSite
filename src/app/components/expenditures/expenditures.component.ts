@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 import { UsersService } from 'src/app/services/users.service';
 import { uuidv4 } from '@firebase/util';
+import { DatePipe } from '@angular/common';
 interface ExpenditureType{
   type: string;
   
@@ -46,7 +47,8 @@ export class ExpendituresComponent implements OnInit {
 
     private toast: HotToastService,
     private usersService: UsersService,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -72,12 +74,13 @@ expenditures: ExpenditureType[] = [
     if (!this.expenditureForm.valid) {
       return;
     }
-
+    const adate = this.expenditureForm.get('expenditureDate')?.value
+    const aadate = this.datePipe.transform(adate,'MM-dd-yyyy');
     const expenditure: Expenditure = {
       id: uuidv4(),
       Type: this.expenditureForm.get('expenditureType')?.value?.type ?? 'Bill',
       Amount: this.expenditureForm.get('expenditureAmount')?.value ?? 0,
-      Date: this.expenditureForm.get('expenditureDate')?.value.toLocaleString() ? new Date(this.expenditureForm.get('expenditureDate')?.value).toLocaleString() : new Date().toLocaleString(),
+      Date: aadate ?? new Date().toLocaleString(),
       Notes: this.expenditureForm.get('expenditureNotes')?.value ?? '',
      dateinserted: new Date()
     };

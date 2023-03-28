@@ -28,21 +28,17 @@ $my_dark_palette: palette(
     
 }
 .textchart{
-    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
 }
 .addButton{
    background-color: rgb(132, 9, 163);
    color: white;
    position: sticky;
    display:block;
-
-   left: 846px;
+  margin-right: auto;
+  margin-left:auto;
 }
 .editButton {
   background-color: red;
 }
-
-
-
-
-

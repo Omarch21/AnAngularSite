@@ -1,5 +1,5 @@
 mat-toolbar {
-  justify-content: space-between;
+
   background-color: rgb(116, 0, 151);
   color: white;
 }
@@ -8,28 +8,32 @@ mat-toolbar {
   padding: 32px;
 
 }
-
+.textwords{
+ margin-left:auto;
+ margin-right:auto;
+height:50%;
+}
 .profile-image-toolbar {
   border-radius: 100%;
   margin-right: 8px;
 }
-.unifiedtext{
-  text-align: center;
-}
-.sideMenu{
-  width: 200px;
-  background-color: #7f1ba6ff;
-  //padding:20px;
-  display: flex;
-}
 
-.usercontainer{
-  height: 100%;
-  //width: 200px;
+.login{
+  margin-left:auto;
+}
+.profile{
+  margin-left: auto;
 }
 .navButton{
 
-  width: 100%;
-  background-color: rgb(60,63,77);
+  width: 8%;
+
   padding: 10px;
+ 
+}
+.logo{
+
+  margin-left: auto;
+  margin-right: auto;
+  height: 120%;
 }

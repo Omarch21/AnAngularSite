@@ -71,7 +71,11 @@ export class EditExpenditureComponent implements OnInit {
   }
 
   saveExpenditure() {
+    if (!this.expenditureForm.valid) {
+      return;
+    }
     const expenditureData = this.expenditureForm.value;
+    expenditureData.Date = this.datePipe.transform(expenditureData.Date, 'MM-dd-yyyy');
     expenditureData.Type = this.expenditureForm.get('Type')?.value.type;
     const expenditureId = this.route.snapshot.paramMap.get('id')!;
     this.usersService
