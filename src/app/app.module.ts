@@ -38,14 +38,15 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 
-import { AddEventForm } from './components/planner/planner.component';
+//import { AddEventForm } from './components/planner/planner.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { UpdateEventForm } from './components/planner/planner.component';
+//import { UpdateEventForm } from './components/planner/planner.component';
 
 
 import { FormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './components/planner/planner-dialogs/confirm-dialog/confirm-dialog.component';
-import { UpdateEventFormComponent } from './components/planner/planner-dialogs/update-dialog/update-event-form/update-event-form.component';
+import { UpdateEventDialogComponent } from './components/planner/planner-dialogs/update-event-dialog/update-event-dialog.component';
+import { AddEventDialogComponent } from './components/planner/planner-dialogs/add-event-dialog/add-event-dialog.component';
 
 
 
@@ -65,10 +66,9 @@ import { UpdateEventFormComponent } from './components/planner/planner-dialogs/u
     HelpPageComponent,
     EditExpenditureComponent,
     PlannerComponent,
-    AddEventForm,
-    UpdateEventForm,
     ConfirmDialogComponent,
-    UpdateEventFormComponent
+    UpdateEventDialogComponent,
+    AddEventDialogComponent
 
   ],
   imports: [

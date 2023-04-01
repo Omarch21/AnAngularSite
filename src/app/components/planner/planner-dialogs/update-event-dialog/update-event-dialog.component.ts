@@ -6,18 +6,18 @@ import { AuthService } from 'src/app/services/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { UsersService } from 'src/app/services/users.service';
 import { map, tap} from 'rxjs';
-import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 @Component({
-  selector: 'app-update-event-form',
-  templateUrl: './update-event-form.component.html',
-  styleUrls: ['./update-event-form.component.css']
+  selector: 'app-update-dialog',
+  templateUrl: './update-event-dialog.component.html',
+  styleUrls: ['./update-event-dialog.component.css']
 })
-export class UpdateEventFormComponent {
+export class UpdateEventDialogComponent {
   event: CalendarEvent = {id:'',title:'',date: new Date()};
   eventcopy: CalendarEvent = {id:'', title: '', date: new Date()};
   updateform: FormGroup;
   newevent: CalendarEvent = {id: '', title: '', date: new Date()}
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<UpdateEventFormComponent>, private usersService: UsersService, private authService: AuthService, private toast: HotToastService, @Inject(MAT_DIALOG_DATA) public eventParameter: CalendarEvent, private dialog: MatDialog){
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<UpdateEventDialogComponent>, private usersService: UsersService, private authService: AuthService, private toast: HotToastService, @Inject(MAT_DIALOG_DATA) public eventParameter: CalendarEvent, private dialog: MatDialog){
     this.updateform = this.fb.group({
       title: [eventParameter.title,Validators.required],
       date: [eventParameter.date,Validators.required],
