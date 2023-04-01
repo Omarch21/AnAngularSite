@@ -8,8 +8,10 @@
     <input matInput type="date" placeholder="Enter Date" formControlName="date" required style="color: black">
     </mat-form-field>
     <div>
-    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid"> Submit </button>
-    <button mat-raised-button style="background-color: red;color:white" mat-dialog-close> Cancel </button>
+        <mat-dialog-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid"> Submit </button>
+            <button mat-raised-button class="cancelbutton" mat-dialog-close> Cancel </button>
+        </mat-dialog-actions>
    </div>
     </form>
     </div>

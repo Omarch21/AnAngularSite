@@ -1,0 +1,15 @@
+.cancelbutton{
+    background-color:grey;
+    color:white;
+}
+.dialoginput{
+    color:black;
+}
+.deletebutton{
+    display:flex;
+    background-color:red;
+    color:white;
+    float: right;
+    margin-top:-28px;
+}
+

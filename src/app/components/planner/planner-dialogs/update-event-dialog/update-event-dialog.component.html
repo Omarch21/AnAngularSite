@@ -1,19 +1,20 @@
-<div>
+<div class="dialog">
     <h2> Update Event</h2>
     <form [formGroup]="updateform" (ngSubmit)="onSubmitUpdate()">
     <mat-form-field>
-    <input matInput placeholder = "Enter Title" formControlName = "title" required style="color: black">
+    <input matInput placeholder = "Title" formControlName = "title" required class="dialoginput">
     </mat-form-field>
     <mat-form-field>
-    <input matInput type="date" placeholder="Enter Date" formControlName="date" required style="color: black">
+    <input matInput type="date" placeholder="Date" formControlName="date" required class="dialoginput">
     </mat-form-field>
     <div>
+    <mat-dialog-actions>
     <button mat-raised-button color="primary" type="submit" [disabled]="updateform.invalid"> Update </button>
-    <button mat-raised-button style="background-color: red;color:white" mat-dialog-close> Cancel </button>
-    
+    <button mat-raised-button class="cancelbutton" mat-dialog-close> Cancel </button>
+    </mat-dialog-actions>
    </div>
     </form>
-    <button mat-raised-button style = "background-color: red; color: white" (click)="deleteEvent()"> Delete </button>
+    <button mat-raised-button class="deletebutton"(click)="deleteEvent()"> Delete </button>
     </div>
-    
+   
     
