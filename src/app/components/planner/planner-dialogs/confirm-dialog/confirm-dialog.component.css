@@ -1,7 +1,6 @@
 .clearbutton{
     background-color: red;
     color: white;
-    margin-right: auto;
 }
 .donebutton{
     background-color: green;
@@ -10,4 +9,5 @@
 .dialog-buttons{
     display:flex;
     justify-content: center;
+    align-items: center;
 }
