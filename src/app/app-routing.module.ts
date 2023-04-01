@@ -8,6 +8,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BudgetComponent } from './components/budget/budget.component';
 import { ExpendituresComponent } from './components/expenditures/expenditures.component';
 import { HelpPageComponent } from './components/help-page/help-page.component';
+import { PlannerComponent } from './components/planner/planner.component';
 import {
   canActivate,
   redirectLoggedInTo,
@@ -62,6 +63,11 @@ const routes: Routes = [
   {
     path: 'budget/expenditures/info/:id',
     component: EditExpenditureComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
+  {
+    path: 'planner',
+    component:  PlannerComponent,
     ...canActivate(redirectUnauthorizedToLogin),
   },
 ];

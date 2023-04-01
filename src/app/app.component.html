@@ -12,6 +12,10 @@
     <mat-icon>monetization_on</mat-icon>
     Budget
   </button>
+  <button mat-button routerLink="/planner" class="navButton">
+    <mat-icon>calendar_today</mat-icon>
+    Planner
+  </button>
    <div class="textwords">
     Unified <img src="../assets/images/fh.png"class="logo"> Portal
 
@@ -25,7 +29,7 @@
         [src]="user.photoURL ?? 'assets/images/image.png'"
       />
       {{ user.displayName }}
-      <mat-icon>menu</mat-icon>
+      
     </button>
   </ng-container>
   <ng-template #loginButton>

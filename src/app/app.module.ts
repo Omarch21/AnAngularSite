@@ -30,6 +30,25 @@ import { HelpPageComponent } from './components/help-page/help-page.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { EditExpenditureComponent } from './components/edit-expenditure/edit-expenditure.component';
 import { DatePipe } from '@angular/common';
+import { PlannerComponent } from './components/planner/planner.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FullCalendarModule } from '@fullcalendar/angular';
+
+
+
+
+import { AddEventForm } from './components/planner/planner.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UpdateEventForm } from './components/planner/planner.component';
+
+
+import { FormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from './components/planner/planner-dialogs/confirm-dialog/confirm-dialog.component';
+import { UpdateEventFormComponent } from './components/planner/planner-dialogs/update-dialog/update-event-form/update-event-form.component';
+
+
+
 
 
 @NgModule({
@@ -45,6 +64,11 @@ import { DatePipe } from '@angular/common';
     ExpendituresComponent,
     HelpPageComponent,
     EditExpenditureComponent,
+    PlannerComponent,
+    AddEventForm,
+    UpdateEventForm,
+    ConfirmDialogComponent,
+    UpdateEventFormComponent
 
   ],
   imports: [
@@ -66,7 +90,11 @@ import { DatePipe } from '@angular/common';
     NgApexchartsModule,
     MatSelectModule,
     MatSidenavModule,
-    
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FullCalendarModule,
+    FormsModule,
+    MatDialogModule
   ],
   providers: [ DatePipe],
   bootstrap: [AppComponent],

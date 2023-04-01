@@ -3,7 +3,13 @@ import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
 import { ApexGrid, ColumnConfiguration } from 'apex-grid';
+import { CalendarOptions } from '@fullcalendar/core';
 
+
+
+
+
+import dayGridPlugin from  '@fullcalendar/daygrid'
 ApexGrid.register();
 
 @Component({
@@ -12,6 +18,10 @@ ApexGrid.register();
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    plugins: [dayGridPlugin]
+  };
   user$ = this.usersService.currentUserProfile$;
 
  

@@ -1,0 +1,13 @@
+.clearbutton{
+    background-color: red;
+    color: white;
+    margin-right: auto;
+}
+.donebutton{
+    background-color: green;
+    color: white;
+}
+.dialog-buttons{
+    display:flex;
+    justify-content: center;
+}
