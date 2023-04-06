@@ -5,8 +5,9 @@
     <input matInput placeholder = "Enter Title" formControlName = "title" required style="color: black">
     </mat-form-field>
     <mat-form-field>
-    <input matInput type="date" placeholder="Enter Date" formControlName="date" required style="color: black">
+    <input matInput type="datetime-local" placeholder="Enter Date" formControlName="date" required style="color: black">
     </mat-form-field>
+
     <div>
         <mat-dialog-actions>
             <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid"> Submit </button>

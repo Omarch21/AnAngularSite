@@ -47,6 +47,7 @@ import { FormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './components/planner/planner-dialogs/confirm-dialog/confirm-dialog.component';
 import { UpdateEventDialogComponent } from './components/planner/planner-dialogs/update-event-dialog/update-event-dialog.component';
 import { AddEventDialogComponent } from './components/planner/planner-dialogs/add-event-dialog/add-event-dialog.component';
+import { AddEventDialogClickComponent } from './components/planner/planner-dialogs/add-event-dialog/add-event-dialog-click.component';
 
 
 
@@ -68,7 +69,8 @@ import { AddEventDialogComponent } from './components/planner/planner-dialogs/ad
     PlannerComponent,
     ConfirmDialogComponent,
     UpdateEventDialogComponent,
-    AddEventDialogComponent
+    AddEventDialogComponent,
+    AddEventDialogClickComponent
 
   ],
   imports: [

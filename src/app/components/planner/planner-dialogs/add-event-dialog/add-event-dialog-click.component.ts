@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CalendarEvent } from 'src/app/models/calendarEvent.model';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
@@ -7,21 +7,23 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { UsersService } from 'src/app/services/users.service';
 import { map, tap} from 'rxjs';
 import { uuidv4 } from '@firebase/util';
+import {DatePipe } from '@angular/common'
 @Component({
   selector: 'app-add-event-dialog',
   templateUrl: './add-event-dialog.component.html',
   styleUrls: ['./add-event-dialog.component.css']
 })
-export class AddEventDialogComponent {
+export class AddEventDialogClickComponent {
 
   event: CalendarEvent = {id:'',title:'',date: ''};
   form: FormGroup;
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddEventDialogComponent>, private usersService: UsersService, private authService: AuthService, private toast: HotToastService){
-    
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddEventDialogClickComponent>, private usersService: UsersService, private authService: AuthService, private toast: HotToastService, private datePipe:DatePipe, @Inject(MAT_DIALOG_DATA) eventParameter: CalendarEvent){
+ // const formdate = this.datePipe.transform(eventParameter.date,'yyyy-MM-dd hh-mm-ss');
+    const formdate =this.datePipe.transform(eventParameter.date,'yyyy-MM-ddTHH:mm');
+    console.log(formdate);
     this.form = this.fb.group({
-      title: ['',Validators.required],
-      date: ['',Validators.required],
-      time: ['']
+      title: ['hi',Validators.required],
+      date: [formdate,Validators.required]
     })
   }
   
@@ -30,15 +32,18 @@ export class AddEventDialogComponent {
     if(this.form.valid){
       const data ={
         title:this.form.get('title')?.value,
-        date:this.form.get('date')?.value,
+        date: this.form.get('date')?.value,
         id: uuidv4(),
-        time: this.form.get('time')?.value
       }
+      const datestr = this.datePipe.transform(data.date,'yyyy-MM-dd');
+      console.log(datestr);
+      if(datestr){
       this.event.date = data.date;
       this.event.title= data.title;
-      this.event.id = data.id
-      this.event.time = data.time;
+      this.event.id = data.id;
+      }
       let userid;
+      console.log(this.event.date);
       this.user$.pipe( map(user => {
         if(user){
         userid = user.uid;

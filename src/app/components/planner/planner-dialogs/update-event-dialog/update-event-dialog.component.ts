@@ -13,10 +13,10 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
   styleUrls: ['./update-event-dialog.component.css']
 })
 export class UpdateEventDialogComponent {
-  event: CalendarEvent = {id:'',title:'',date: new Date()};
-  eventcopy: CalendarEvent = {id:'', title: '', date: new Date()};
+  event: CalendarEvent = {id:'',title:'',date: ''};
+  eventcopy: CalendarEvent = {id:'', title: '', date: ''};
   updateform: FormGroup;
-  newevent: CalendarEvent = {id: '', title: '', date: new Date()}
+  newevent: CalendarEvent = {id: '', title: '', date: ''}
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<UpdateEventDialogComponent>, private usersService: UsersService, private authService: AuthService, private toast: HotToastService, @Inject(MAT_DIALOG_DATA) public eventParameter: CalendarEvent, private dialog: MatDialog){
     this.updateform = this.fb.group({
       title: [eventParameter.title,Validators.required],

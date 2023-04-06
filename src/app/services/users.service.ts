@@ -76,7 +76,7 @@ export class UsersService {
       })
     );
   }
-  getEvents(): Observable<Event[] | null> {
+  getEvents(): Observable<CalendarEvent[] | null> {
     return this.authService.currentUser$.pipe(
       switchMap((user) => {
         if (!user?.uid) {
@@ -84,7 +84,7 @@ export class UsersService {
         }
 
         const ref = collection(this.firestore, 'users', user?.uid, 'events');
-        return collectionData(ref) as Observable<Event[] | null>;
+        return collectionData(ref) as Observable<CalendarEvent[] | null>;
       })
     );
   }

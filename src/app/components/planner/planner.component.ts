@@ -1,5 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { CalendarOptions,EventInput,CustomButtonInput,EventApi,EventSourceInput,Calendar,DateSelectArg } from '@fullcalendar/core'
+import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { FormGroup, UntypedFormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -8,6 +9,7 @@ import { DatePipe } from '@angular/common';
 import { CalendarEvent } from 'src/app/models/calendarEvent.model';
 import { UsersService } from 'src/app/services/users.service';
 import { tap } from 'rxjs/operators'
+import { AddEventDialogClickComponent } from './planner-dialogs/add-event-dialog/add-event-dialog-click.component';
 
 
 
@@ -27,7 +29,7 @@ import { UpdateEventDialogComponent } from './planner-dialogs/update-event-dialo
   styleUrls: ['./planner.component.css'],
 })
 export class PlannerComponent implements OnInit {
-  calendarEvents: Event[] = [];
+  calendarEvents: CalendarEvent[] = [];
   public counter = 0;
   eventForm = new FormGroup({
     uid: new FormControl(null),
@@ -41,14 +43,16 @@ export class PlannerComponent implements OnInit {
   newEvents: EventInput[] = [];
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin],
-
+    plugins: [dayGridPlugin, interactionPlugin],
+    dateClick: this.openDialogClick.bind(this),
     eventClick: this.updateEvent.bind(this),
+    timeZone: 'local',
+    selectable: true,
     customButtons:{
       addEventButton:{
         text: 'Add Event',
         click: () => {
-          this.openDialog();
+        this.openDialog();
         }
       }
     },
@@ -65,7 +69,7 @@ export class PlannerComponent implements OnInit {
       tap((events) => {
         if(events){
           console.log(events);
-          this.calendarEvents = events;
+          this.calendarEvents = events as CalendarEvent[];
           this.calendarOptions.events = [...this.calendarEvents];
         }else{
           console.log('Could not find events');
@@ -90,8 +94,10 @@ export class PlannerComponent implements OnInit {
     }
     this.counter = 0;
     }
-  addingEvent(argTitle: string, argDate: Date){
+  addingEvent(argTitle: string, argDate: Date, argid: string){
     //console.log('hi');
+    console.log(argDate);
+    console.log(argid);
     const newdate = this.datePipe.transform(argDate, 'yyyy-MM-dd');
     console.log(newdate);
     if(newdate){
@@ -99,15 +105,28 @@ export class PlannerComponent implements OnInit {
       title: argTitle,
       date: newdate
     }
-    this.calendarOptions.events = [...(this.calendarOptions.events as EventInput[]), newEvent];
+    this.calendarOptions.events = [...(this.calendarOptions.events as CalendarEvent[]), newEvent];
   }
  
   }
   openDialog(){
     const dialogRef = this.dialog.open(AddEventDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result.date);
       if (result){
-        this.addingEvent(result.title,result.date);
+        this.addingEvent(result.title, result.date, result.id);
+      }
+    })
+  }
+  openDialogClick(arg: any){
+    console.log(arg.date);
+    const dialogRef = this.dialog.open(AddEventDialogClickComponent,{
+      data: arg
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result.date);
+      if (result){
+        this.addingEvent(result.title,arg.date, result.id);
       }
     })
   }
