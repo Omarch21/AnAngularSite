@@ -1,3 +1,50 @@
-<ng-container *ngIf="user$ | async as user">
-    <h1>Welcome to the home page, {{user.displayName}}!</h1>
+<div class="dash">
+    <div *ngIf="user$|async as user">
+        <h1>Welcome to the home page, {{user.displayName}}!</h1>
+        You have spent {{expenditureTotal$ | async}} dollars in expenditures
+        </div>
+<div class="board">
+<ng-container *ngIf="user$ | async as user">   
+    <ng-template #loading>loading...</ng-template>
+   
+    <div class="board">
+        <div class="areachart">
+            <apx-chart  *ngIf="(expenditures$ | async) as expenditures; else loading" [chart]="options.chart!" [series] = "options.series!" [xaxis] = "options.xaxis!" [yaxis] = "options.yaxis!" [labels] = "options.labels!" [title] = "options.title!" [stroke] = "options.stroke!" [dataLabels] = "options.dataLabels!"></apx-chart>
+        </div>
+    <div class="calendargrid">
+ 
+    <full-calendar [options]="calendarOptions"></full-calendar>
+    </div>
+  
+    
+    </div>
 </ng-container>
+</div>
+
+   
+<button mat-raised-button (click)="openGoalDialog()" class="buttongoal"> Add Goal</button>
+<div class="board2">
+ 
+<ng-template #loading> loading</ng-template>
+<ng-container *ngIf="user$ | async as user">
+   
+    <div class="grid">
+     
+           
+     
+        <apex-grid [columns] = "accomplishmentscolumn" [data]="accomplishments" class="goals">
+           
+        </apex-grid>
+    </div>
+    <div class="grid2">
+   
+        <apex-grid [columns] = "column" [data]="goals" class="goals">
+           
+        </apex-grid>
+ 
+    </div>
+
+    
+
+</ng-container>
+</div>

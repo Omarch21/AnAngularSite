@@ -24,6 +24,8 @@
     "@fullcalendar/core": "^6.1.5",
     "@fullcalendar/daygrid": "^6.1.5",
     "@fullcalendar/interaction": "^6.1.5",
+    "@fullcalendar/list": "^6.1.5",
+    "@fullcalendar/multimonth": "^6.1.5",
     "@ngneat/hot-toast": "^4.1.0",
     "@ngneat/overview": "^3.0.0",
     "@ngneat/until-destroy": "^9.2.1",

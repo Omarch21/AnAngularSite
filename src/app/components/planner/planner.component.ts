@@ -23,6 +23,7 @@ import { AddEventDialogClickComponent } from './planner-dialogs/add-event-dialog
 
 import { AddEventDialogComponent } from './planner-dialogs/add-event-dialog/add-event-dialog.component';
 import { UpdateEventDialogComponent } from './planner-dialogs/update-event-dialog/update-event-dialog.component';
+import multiMonthPlugin from '@fullcalendar/multimonth'
 @Component({
   selector: 'app-planner',
   templateUrl: './planner.component.html',
@@ -43,11 +44,16 @@ export class PlannerComponent implements OnInit {
   newEvents: EventInput[] = [];
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin, interactionPlugin],
+    plugins: [dayGridPlugin, interactionPlugin,multiMonthPlugin],
     dateClick: this.openDialogClick.bind(this),
     eventClick: this.updateEvent.bind(this),
-    timeZone: 'local',
+    eventBackgroundColor: 'purple',
+    eventColor: 'purple',
     selectable: true,
+    views:{
+      dayGridMonth: {buttonText: 'Month'},
+      multiMonthYear: {buttonText: 'Year'}
+    },
     customButtons:{
       addEventButton:{
         text: 'Add Event',
@@ -60,7 +66,7 @@ export class PlannerComponent implements OnInit {
     headerToolbar:{
       start: 'today prev,next',
       center: 'title',
-      end: 'addEventButton'
+      end: 'addEventButton,multiMonthYear,dayGridMonth'
     },
     events:[]
   };
@@ -105,7 +111,7 @@ export class PlannerComponent implements OnInit {
       title: argTitle,
       date: newdate
     }
-    this.calendarOptions.events = [...(this.calendarOptions.events as CalendarEvent[]), newEvent];
+    this.calendarOptions.events = [...(this.calendarOptions.events as CalendarEvent[])];
   }
  
   }

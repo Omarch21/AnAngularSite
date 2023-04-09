@@ -1,0 +1,23 @@
+<div>
+    <h2> Update goal</h2>
+    <form [formGroup]="goalform" (ngSubmit)="onSubmitUpdate()">
+    <mat-form-field>
+    <input matInput placeholder = "Enter Goal" formControlName = "name" required style="color: black">
+    </mat-form-field>
+    <mat-form-field>
+    <input matInput type="date" placeholder="Enter Date" formControlName="date" required style="color: black">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder = "Enter notes" formControlName = "notes" style="color: black">
+        </mat-form-field>
+    <div>
+        <mat-dialog-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="goalform.invalid"> Submit </button>
+            <button mat-raised-button class="cancelbutton" mat-dialog-close> Cancel </button>
+        </mat-dialog-actions>
+      
+   </div>
+    </form>
+
+    <button mat-raised-button (click)="deleteAccomplishment()" class="button1"> Delete</button>
+    </div>

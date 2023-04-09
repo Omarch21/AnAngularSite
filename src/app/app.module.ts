@@ -48,6 +48,9 @@ import { ConfirmDialogComponent } from './components/planner/planner-dialogs/con
 import { UpdateEventDialogComponent } from './components/planner/planner-dialogs/update-event-dialog/update-event-dialog.component';
 import { AddEventDialogComponent } from './components/planner/planner-dialogs/add-event-dialog/add-event-dialog.component';
 import { AddEventDialogClickComponent } from './components/planner/planner-dialogs/add-event-dialog/add-event-dialog-click.component';
+import { AddGoalDialogComponent } from './components/home/add-goal-dialog/add-goal-dialog.component';
+import { UpdateGoalDialogComponent } from './components/home/update-goal-dialog/update-goal-dialog.component';
+import { AccomplishmentDialogComponent } from './components/home/accomplishment-dialog/accomplishment-dialog.component';
 
 
 
@@ -70,7 +73,10 @@ import { AddEventDialogClickComponent } from './components/planner/planner-dialo
     ConfirmDialogComponent,
     UpdateEventDialogComponent,
     AddEventDialogComponent,
-    AddEventDialogClickComponent
+    AddEventDialogClickComponent,
+    AddGoalDialogComponent,
+    UpdateGoalDialogComponent,
+    AccomplishmentDialogComponent
 
   ],
   imports: [

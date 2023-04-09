@@ -1,0 +1,16 @@
+.button1{
+    margin-top: -28px;
+    float:right;
+    background-color: red;
+    color:white;
+}
+
+
+
+
+.button2{
+    background-color: green;
+    color:white;
+    margin-top:-28px;
+    float: right;
+}

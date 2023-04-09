@@ -18,11 +18,10 @@ export class AddEventDialogClickComponent {
   event: CalendarEvent = {id:'',title:'',date: ''};
   form: FormGroup;
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddEventDialogClickComponent>, private usersService: UsersService, private authService: AuthService, private toast: HotToastService, private datePipe:DatePipe, @Inject(MAT_DIALOG_DATA) eventParameter: CalendarEvent){
- // const formdate = this.datePipe.transform(eventParameter.date,'yyyy-MM-dd hh-mm-ss');
     const formdate =this.datePipe.transform(eventParameter.date,'yyyy-MM-ddTHH:mm');
-    console.log(formdate);
+ 
     this.form = this.fb.group({
-      title: ['hi',Validators.required],
+      title: ['',Validators.required],
       date: [formdate,Validators.required]
     })
   }
