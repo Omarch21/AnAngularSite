@@ -1,23 +1,33 @@
+<div class="screen">
+    <ng-container *ngIf="user$ | async as user">
 
-<ng-container *ngIf="user$ | async as user">
+        <div>
+            <h1 style="text-align: center;">Welcome to the Budget page, {{user.displayName}}!, you have a budget of {{user.totalBudget}}</h1>
+            <button class="addButton"type="submit" (click)="openExpenditureDialog()"mat-fab ><mat-icon>add</mat-icon></button>
+            <apex-grid [columns]="column" [data]="expenditures" class="expenditureGrid">
+          
+              </apex-grid>  
+        
+        </div>
+        
+        </ng-container>
+        
+    <ng-container *ngIf="user$ | async as user">
  
-    <h1 style="text-align: center;">Welcome to the Budget page, {{user.displayName}}!, you have a budget of {{user.totalBudget}}</h1>
+   
     <div class = "pie-chart">
-        <apx-chart *ngIf="(expen$ | async) as expenditures; else loading"  [plotOptions] = "chartPlot"[dataLabels] = "chartOptions" [series] = "chartSeries" [chart] = "chartDetails" [labels] = "chartLabels"></apx-chart>
+        <apx-chart *ngIf="(expen$ | async) as expenditures; else loading"  class="chart1"[plotOptions] = "chartPlot"[dataLabels] = "chartOptions" [series] = "chartSeries" [chart] = "chartDetails" [labels] = "chartLabels"></apx-chart>
+       
         <ng-template #loading>Loading...</ng-template>
         
-            
+        <div class="achart">
+            <apx-chart *ngIf="(expen$ | async) as expenditures; else loading"  class="chart2" [series] = "chartOptions2.series!" [chart] = "chartOptions2.chart!" [xaxis]="chartOptions2.xaxis!"></apx-chart>
         </div>
-        <button class="addButton"type="submit" mat-raised-button routerLink="/budget/expenditures">Add Expenditure</button>
+        </div>
+       
         <br>
-        
+      
 </ng-container>
-<ng-container *ngIf="user$ | async as user">
-<div>
-    <apex-grid [columns]="column" [data]="expenditures" class="expenditureGrid">
-  
-      </apex-grid>  
+
 
 </div>
-</ng-container>
-

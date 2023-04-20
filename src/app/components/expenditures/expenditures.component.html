@@ -1,5 +1,5 @@
 <div
-  class="form-container mat-elevation-z5 text-center"
+ class="form1"
   *ngIf="user$ | async as user"
 >
   <h1>Expenditure</h1>
@@ -24,6 +24,7 @@
           formControlName="expenditureAmount"
           placeholder="Amount"
           required
+          class="inputtext"
         />
         <mat-error *ngIf="expenditureForm.controls['expenditureAmount'].hasError('required')"> Please enter an amount</mat-error>
         <mat-error *ngIf="expenditureForm.get('expenditureAmount')?.hasError('negativeAmount')"> Please enter in postive amount</mat-error>
@@ -34,11 +35,13 @@
           matInput
           formControlName="expenditureDate"
           placeholder="Date"
+          class="inputtext"
         />
       </mat-form-field>
       <mat-form-field>
         <input
           type="text"
+          class="inputtext"
           matInput
           formControlName="expenditureNotes"
           placeholder="Notes"
@@ -54,4 +57,8 @@
       Add
     </button>
   </form>
+  <button type="submit" class="margin-top" mat-raised-button class="cancelbutton" mat-dialog-close>
+    Cancel
+  </button>
 </div>
+

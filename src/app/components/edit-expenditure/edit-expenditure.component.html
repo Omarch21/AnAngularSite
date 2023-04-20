@@ -1,6 +1,6 @@
 <p></p>
 <div
-  class="form-container mat-elevation-z5 text-center"
+ 
   *ngIf="user$ | async as user"
 >
   <h1>Edit Expenditure</h1>
@@ -25,6 +25,7 @@
           matInput
           formControlName="Amount"
           placeholder="Amount"
+          class="inputtext"
           required
         />
         <mat-error *ngIf="expenditureForm.controls['Amount'].hasError('required')"> Please enter an amount</mat-error>
@@ -36,6 +37,7 @@
           matInput
           formControlName="Date"
           placeholder="Date"
+          class="inputtext"
         />
       </mat-form-field>
       <mat-form-field>
@@ -44,6 +46,7 @@
           matInput
           formControlName="Notes"
           placeholder="Notes"
+          class="inputtext"
 
         />
       </mat-form-field>
@@ -56,9 +59,12 @@
       Update
     </button>
   </form>
-  <br>
+  <button mat-raised-button class="cbutton" mat-dialog-close>
+    Cancel
+  </button>
   <button mat-raised-button  class="tbutton" (click)="deleteExpenditure()">
     Delete</button>
+   
 </div>
 <br>
 

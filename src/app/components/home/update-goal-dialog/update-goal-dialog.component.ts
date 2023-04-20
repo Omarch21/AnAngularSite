@@ -9,6 +9,7 @@ import { MatDialog,MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog
 
 import { map} from 'rxjs';
 import { ConfirmDialogComponent } from '../../planner/planner-dialogs/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent2 } from '../accomplishment-dialog/confirm-dialog/confirm-dialog.component';
 @Component({
   selector: 'app-update-goal-dialog',
   templateUrl: './update-goal-dialog.component.html',
@@ -91,7 +92,7 @@ export class UpdateGoalDialogComponent implements OnInit {
   accomplishGoal(){
     let userid;
 
-    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent2);
     dialogRef.afterClosed().subscribe((result) =>{
       if(result){
         this.usersService.currentUserProfile$.pipe(map(user=>{

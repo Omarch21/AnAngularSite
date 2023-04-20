@@ -1,4 +1,20 @@
 .tbutton{
     background-color: rgb(218, 3, 3);
     color: white;
+    margin-right:50px;
+    float:right;
+   
+    margin-top:-35px;
+}
+.inputtext{
+    color:black;
+}
+
+
+
+
+.cbutton{
+    float:right;
+    margin-top:-35px;
+
 }

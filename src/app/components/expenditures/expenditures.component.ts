@@ -9,6 +9,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { UsersService } from 'src/app/services/users.service';
 import { uuidv4 } from '@firebase/util';
 import { DatePipe } from '@angular/common';
+import { MatDialogRef } from '@angular/material/dialog';
 interface ExpenditureType{
   type: string;
   
@@ -48,7 +49,8 @@ export class ExpendituresComponent implements OnInit {
     private toast: HotToastService,
     private usersService: UsersService,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private dialogref:MatDialogRef<ExpendituresComponent>
   ) {}
 
   ngOnInit(): void {
@@ -96,7 +98,7 @@ expenditures: ExpenditureType[] = [
       console.error(error);
       this.toast.error("There was an error adding expenditure");
     })
-   
+    this.dialogref.close();
 
     };
   

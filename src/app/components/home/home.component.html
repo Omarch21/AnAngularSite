@@ -1,8 +1,11 @@
-<div class="dash">
-    <div *ngIf="user$|async as user">
-        <h1>Welcome to the home page, {{user.displayName}}!</h1>
-        You have spent {{expenditureTotal$ | async}} dollars in expenditures
+
+   
+    <div class="dash">
+        <div *ngIf="user$|async as user" class="begin">
+            <h1>Welcome to your dashboard {{user.displayName}}!</h1>
+            You have spent {{expenditureTotal$ | async}} dollars in expenditures
         </div>
+        <br>
 <div class="board">
 <ng-container *ngIf="user$ | async as user">   
     <ng-template #loading>loading...</ng-template>
@@ -21,8 +24,7 @@
 </ng-container>
 </div>
 
-   
-<button mat-raised-button (click)="openGoalDialog()" class="buttongoal"> Add Goal</button>
+   <br>
 <div class="board2">
  
 <ng-template #loading> loading</ng-template>
@@ -47,4 +49,11 @@
     
 
 </ng-container>
+</div>
+<br>
+<div class="addbutton" *ngIf="user$ | async as user">
+
+<button mat-fab (click)="openGoalDialog()" class="secondbutton"> <mat-icon>add</mat-icon></button>
+
+</div>
 </div>

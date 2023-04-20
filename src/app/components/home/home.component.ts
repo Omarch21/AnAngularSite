@@ -142,12 +142,42 @@ accomplishmentscolumn: ColumnConfiguration<Goal>[] = [
             return 0;
           }
          })
-         this.num = this.expenditures.map((nums) => nums.Amount);
-         this.dates = this.expenditures.map((numstime) => numstime.Date!)
+         const groupedExpenditures: {[key:string]: Array<{amount: number, date: string}>} = {};
+         const expendituresByDate: {[key:string]: number} = {};
+         this.expenditures.forEach((expenditure) => {
+          if (groupedExpenditures.hasOwnProperty(expenditure.Type)) {
+            groupedExpenditures[expenditure.Type].push({
+              amount: expenditure.Amount,
+              date: expenditure.Date!
+            });
+          } else {
+            groupedExpenditures[expenditure.Type] = [{
+              amount: expenditure.Amount,
+              date: expenditure.Date!
+            }];
+          }
+          if (expendituresByDate.hasOwnProperty(expenditure.Date!)) {
+            expendituresByDate[expenditure.Date!] += expenditure.Amount;
+          } else {
+            expendituresByDate[expenditure.Date!] = expenditure.Amount;
+          }
+        });
+        const data = Object.keys(groupedExpenditures).map((type) => {
+          const expenditures = groupedExpenditures[type];
+          return expenditures.reduce((total, expenditure) => total + expenditure.amount, 0);
+        });
+        const dates = Object.keys(expendituresByDate).sort();
+        
+ 
+        this.dates = dates.map((dateStr) => dateStr);
+        console.log(this.dates);
+
+        
+        //console.log(data, this.dates);
         console.log(this.num);
           this.options = {
             series: [{
-              data: this.num,
+              data: data,
               name: "Expenditure Amount",
               color: "purple",
           }],

@@ -56,20 +56,14 @@ $my_dark_palette: palette(
 
 }
 .buttongoal{
-  margin-right:auto;
-  margin-left:auto;
-  margin-top:auto;
-  margin-bottom:auto;
+
   background-color:purple;
   color:white;
   width:100px;
   height:35px;
+  margin-right:650px;
+}
 
-}
-.button{
-  margin-right:auto;
- 
-}
 
 .grid2{
   width:650px;
@@ -78,5 +72,19 @@ $my_dark_palette: palette(
   box-shadow:0px 1px 22px -5px #607d8B
 }
 
+.begin{
+  text-align:center;
+}
 
-
+.addbutton{
+  display:flex;
+  flex-direction:row;
+  flex-flow:row;
+  justify-content:center;
+}
+.secondbutton{
+  background-color:purple;
+  color:white;
+  margin-left:680px;
+  margin-top:-100px;
+}

@@ -28,3 +28,19 @@
   width:100%;
   height: 10%;
 }
+.inputtext{
+  color:black;
+}
+.form1{
+  width:600px;
+}
+
+
+
+
+.cancelbutton{
+  background-color:red;
+  color:white;
+  float:right;
+  margin-top:-35px;
+}

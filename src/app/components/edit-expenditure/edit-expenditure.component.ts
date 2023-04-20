@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { UntypedFormControl, UntypedFormGroup, FormGroup, FormControl,Validators } from '@angular/forms';
 import { negativeExpenditure } from '../expenditures/expenditures.component';
@@ -10,6 +10,9 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Auth } from '@angular/fire/auth';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UpdateEventDialogComponent } from '../planner/planner-dialogs/update-event-dialog/update-event-dialog.component';
 interface ExpenditureType{
   type: string;
   
@@ -38,10 +41,13 @@ export class EditExpenditureComponent implements OnInit {
     Date: new FormControl(''),
     Notes: new FormControl('')
 });
-  constructor(private usersService: UsersService, private datePipe: DatePipe, private toast: HotToastService, private route: ActivatedRoute, private router: Router, private auth: Auth ) { }
+  constructor(private usersService: UsersService, private datePipe: DatePipe, private toast: HotToastService, private route: ActivatedRoute, private router: Router, private auth: Auth,private dialogref:MatDialogRef<UpdateEventDialogComponent>,@Inject(MAT_DIALOG_DATA)public expenditureparam:string) { }
 
   ngOnInit(): void {
-    const expenditureId = this.route.snapshot.paramMap.get('id')!;
+    if(this.expenditureparam){
+
+    }
+    const expenditureId = this.expenditureparam;
     this.usersService
       .getExpenditureById(expenditureId)
       .subscribe(
@@ -56,7 +62,9 @@ export class EditExpenditureComponent implements OnInit {
               ?.setValue(expenditureType);
           }
           if(expenditure.Date){
+            console.log(expenditure.Amount)
             this.expenditureForm.patchValue({
+            
               Amount: expenditure.Amount,
               Date: this.datePipe.transform(expenditure.Date, 'yyyy-MM-dd'),
               Notes: expenditure.Notes
@@ -93,7 +101,7 @@ export class EditExpenditureComponent implements OnInit {
       .subscribe();
   }
   deleteExpenditure(){
-    const expenditureId = this.route.snapshot.paramMap.get('id')!;
+    const expenditureId = this.expenditureparam;
     const id = this.auth.currentUser?.uid;
     console.log(id);
     if(confirm('Are you sure you want to delete expenditure?')){
@@ -105,7 +113,7 @@ export class EditExpenditureComponent implements OnInit {
     }).catch(error =>{
       this.toast.error("There was an error")
     })
-      
+      this.dialogref.close();
 
 }
   }
