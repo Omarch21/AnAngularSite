@@ -3,7 +3,7 @@
 
         <div>
             <h1 style="text-align: center;">Welcome to the Budget page, {{user.displayName}}!, you have a budget of {{user.totalBudget}}</h1>
-            <button class="addButton"type="submit" (click)="openExpenditureDialog()"mat-fab ><mat-icon>add</mat-icon></button>
+            <button class="addButton"type="submit" (click)="openExpenditureDialog()"mat-raised-button >Add<mat-icon class="plussign">add</mat-icon></button>
             <apex-grid [columns]="column" [data]="expenditures" class="expenditureGrid">
           
               </apex-grid>  

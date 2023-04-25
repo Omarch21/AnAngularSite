@@ -33,14 +33,14 @@
     <div class="grid">
      
            
-     
-        <apex-grid [columns] = "accomplishmentscolumn" [data]="accomplishments" class="goals">
+        <button mat-raised-button (click)="openGoalDialog()" class="secondbutton">Add<mat-icon class="plussign">add</mat-icon></button>
+        <apex-grid [columns] = "column" [data]="goals" class="goals">
            
         </apex-grid>
     </div>
     <div class="grid2">
    
-        <apex-grid [columns] = "column" [data]="goals" class="goals">
+        <apex-grid [columns] = "accomplishmentscolumn" [data]="accomplishments" class="goals">
            
         </apex-grid>
  
@@ -53,7 +53,7 @@
 <br>
 <div class="addbutton" *ngIf="user$ | async as user">
 
-<button mat-fab (click)="openGoalDialog()" class="secondbutton"> <mat-icon>add</mat-icon></button>
+
 
 </div>
 </div>
